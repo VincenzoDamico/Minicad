@@ -4,6 +4,7 @@ import is.utility.Dimension2DC;
 import is.utility.MyConstants;
 
 import java.awt.geom.Point2D;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class GroupObject extends AbstractGraphicObject{
             for (GraphicObject o : getListGroup()) {
                 o.moveTo(o.getPosition().getX() + diff.getX(), o.getPosition().getY() + diff.getY());
             }
-            updatePosition();
+            posAttuale.setLocation(p.getX(),p.getY());
         }else{
-            throw new IllegalArgumentException("Posizione finale non valida."+MyConstants.ERR_NEG_VAL);
+            throw new IllegalArgumentException(MyConstants.ERR_POS_GRP);
         }
     }
 
@@ -117,16 +118,35 @@ public class GroupObject extends AbstractGraphicObject{
 
 
     //l'idea è che l'oggetto stesso si renda conto al momento della chimate se alcuni suoi elementi sono stai eliminati e quindi si aggiorni da solo
-    public List<GraphicObject> getListGroup(){
-        List<GraphicObject> ret=new LinkedList<>();
-        for(String id: groups){
-            if(reg.contains(id)){
-                ret.add(reg.getObj(id));
-            }else{
-                groups.remove(id);            }
+    public List<GraphicObject> getListGroup() {
+        List<GraphicObject> ret = new LinkedList<>();
+        updateGrp();
+        for (String idEl : groups) {
+                ret.add(reg.getObj(idEl));
         }
         return ret;
+
     }
+
+    private void updateGrp() {
+        LinkedList<String> up = new LinkedList<>(groups);
+        boolean newPos=false;
+        for (String idEl : up) {
+            if (!reg.contains(idEl)) {
+                groups.remove(idEl);
+                newPos=true;
+            }
+        }
+        if(groups.isEmpty()){
+            reg.remove(id);
+            throw new RuntimeException("Id:"+id+". "+MyConstants.ERR_DEL_GRP);
+        }
+        if (newPos){
+            updatePosition();
+        }
+    }
+
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();

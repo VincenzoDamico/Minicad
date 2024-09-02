@@ -19,7 +19,9 @@ public class MyConstants {
             "<listID>::= <objID> { , <objID> }\n" +
             "Il path dell'immagine deve essere assoluto a meno che l'immagine non si trovi nella cartella col il seguende path:\n"+
             MyConstants.GEN_PATH+"\n";
-    public static final String ERR_POS_VAL="Errore nello spostamento provare con una posizione diversa";
+    public static final String ERR_POS_GRP="Posizione finale del gruppo non valida.";
+    public static final String ERR_DEL_GRP="Il gruppo è risultato vuoto quindi è stato automaticamente eliminato";
+
     public static final String ERR_NEG_VAL="Non si accettano val negativi.";
     public static final String ERR_NEG_GEN="Comando inesistente.";
     public static final String ERR_NEG_LS="La sintassi del comando è errata. La corretta è ls <objID> o ls <type> o ls all o ls groups";

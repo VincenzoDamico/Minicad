@@ -19,7 +19,12 @@ public class LsCmd implements Command {
         StringBuilder ret=new StringBuilder();
         for(GraphicObject obj: reg){
             if(ric.equals("all")||obj.getId().matches(ric)){
-                ret.append(obj);
+                try {
+                    ret.append(obj);
+                }catch (RuntimeException e) {
+                     System.err.println(e.toString().replace("java.lang.RuntimeException: ","")+"\n");
+                }
+
             }
         }
         return ret.toString();
