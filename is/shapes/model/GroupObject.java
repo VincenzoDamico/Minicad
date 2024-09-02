@@ -28,11 +28,24 @@ public class GroupObject extends AbstractGraphicObject{
         if(p.getX()<0 ||p.getY()<0)
             throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
         Point2D diff = new Point2D.Double(p.getX()-posAttuale.getX(), p.getY()-posAttuale.getY());
-        for(GraphicObject o : getListGroup()) {
-            o.moveTo(o.getPosition().getX()+diff.getX(),o.getPosition().getY()+diff.getY());
+        if(diff.getY()!=0 && diff.getX()!=0 && MovePos(diff)) {
+            for (GraphicObject o : getListGroup()) {
+                o.moveTo(o.getPosition().getX() + diff.getX(), o.getPosition().getY() + diff.getY());
+            }
+            updatePosition();
+        }else{
+            throw new IllegalArgumentException("Posizione finale non valida."+MyConstants.ERR_NEG_VAL);
         }
-        updatePosition();
     }
+
+    private boolean MovePos(Point2D diff) {
+        for (GraphicObject o : getListGroup()) {
+            if(o.getPosition().getX() + diff.getX()<0 || o.getPosition().getY() + diff.getY()<0)
+                    return false;
+        }
+        return true;
+    }
+
     @Override
     public double getArea() {
         double area = 0;
