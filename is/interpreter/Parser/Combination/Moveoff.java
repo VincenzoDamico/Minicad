@@ -17,12 +17,11 @@ import static is.interpreter.Parser.HelperParser.getObj;
 public class Moveoff implements Combination {
     private ObjectRegister reg;
     private LexicalAnalyzer lexer;
-    private Symbol symbol;
+
     private final HistoryCommandHandler handler;
 
-    public Moveoff(HistoryCommandHandler handler, Symbol symbol, LexicalAnalyzer lexer, ObjectRegister reg) {
+    public Moveoff(HistoryCommandHandler handler, LexicalAnalyzer lexer, ObjectRegister reg) {
         this.handler = handler;
-        this.symbol = symbol;
         this.lexer = lexer;
         this.reg = reg;
     }
@@ -30,9 +29,9 @@ public class Moveoff implements Combination {
     @Override
     public void interpret() {
         try {
-            GraphicObject go =  getObj( symbol,  lexer,  reg);
+            GraphicObject go =  getObj(   lexer,  reg);
             if (go != null) {
-                Point2D position =getDupla( symbol, lexer);
+                Point2D position =getDupla(  lexer);
                 double newX = position.getX() + go.getPosition().getX();
                 double newY = position.getY() + go.getPosition().getY();
                 position.setLocation(newX, newY);

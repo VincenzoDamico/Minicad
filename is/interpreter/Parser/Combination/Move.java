@@ -18,12 +18,10 @@ import static is.interpreter.Parser.HelperParser.getObj;
 public class Move implements Combination {
     private ObjectRegister reg;
     private LexicalAnalyzer lexer;
-    private Symbol symbol;
     private final HistoryCommandHandler handler;
 
-    public Move(HistoryCommandHandler handler, Symbol symbol, LexicalAnalyzer lexer, ObjectRegister reg) {
+    public Move(HistoryCommandHandler handler, LexicalAnalyzer lexer, ObjectRegister reg) {
         this.handler = handler;
-        this.symbol = symbol;
         this.lexer = lexer;
         this.reg = reg;
     }
@@ -31,9 +29,9 @@ public class Move implements Combination {
     @Override
     public void interpret() {
         try {
-            GraphicObject go = getObj( symbol,  lexer,  reg);
+            GraphicObject go = getObj( lexer,  reg);
             if (go != null) {
-                Point2D position = getDupla( symbol, lexer);
+                Point2D position = getDupla(  lexer);
                 if (position.getX() < 0 || position.getY() < 0) {
                     throw new SyntaxException(MyConstants.ERR_NEG_VAL);
                 }

@@ -25,11 +25,13 @@ import static is.interpreter.Parser.HelperParser.atteso;
 
 
 public class Parser {
-    private ObjectRegister reg;
+
+    private final ObjectRegister reg;
     private LexicalAnalyzer lexer;
     private Symbol symbol;
     private final HistoryCommandHandler handler;
     private final GraphicObjectPanel gpanel;
+    private Combination cob;
 
     public Parser(GraphicObjectPanel gpanel, Reader in, HistoryCommandHandler handler) {
         this.handler = handler;
@@ -37,50 +39,57 @@ public class Parser {
         lexer = new LexicalAnalyzer(in);
         reg = new ObjectRegister();
     }
+    public ObjectRegister getReg() {
+        return reg;
+    }
 
     public void setReader(Reader sr) {
         try {
             lexer = new LexicalAnalyzer(sr);
-            Combination().interpret();
+            cob=Combination();
+            cob.interpret();
             symbol = lexer.nextSymbol();
             atteso(symbol, Symbol.EOF);
         } catch (SyntaxException e) {
             throw new SyntaxException(e.toString());
         }
     }
+    public Combination getCob() {
+        return cob;
+    }
 
     private Combination Combination() {
         symbol = lexer.nextSymbol();
         if (symbol == Symbol.NEW) {
-            return new Creation(gpanel, handler, symbol, lexer, reg);
+            return new Creation(gpanel, handler, lexer, reg);
 
         }
         if (symbol == Symbol.DEL) {
-            return new Delete(gpanel, handler, symbol, lexer, reg);
+            return new Delete(gpanel, handler,  lexer, reg);
         }
         if (symbol == Symbol.MV) {
-            return new Move(handler, symbol, lexer, reg);
+            return new Move(handler,  lexer, reg);
         }
         if (symbol == Symbol.MVOFF) {
-            return new Moveoff(handler, symbol, lexer, reg);
+            return new Moveoff(handler,lexer, reg);
         }
         if (symbol == Symbol.SCALE) {
-            return new Scale(handler, symbol, lexer, reg);
+            return new Scale(handler, lexer, reg);
         }
         if (symbol == Symbol.GRP) {
-            return new Group(handler, symbol, lexer, reg);
+            return new Group(handler,lexer, reg);
         }
         if (symbol == Symbol.UNGRP) {
-            return new Ungroup(handler, symbol, lexer, reg);
+            return new Ungroup(handler,lexer, reg);
         }
         if (symbol == Symbol.AREA) {
-            return new Area(handler, symbol, lexer, reg);
+            return new Area(handler, lexer, reg);
         }
         if (symbol == Symbol.PERIMETER) {
-            return new Perimeter(handler, symbol, lexer, reg);
+            return new Perimeter(handler,lexer, reg);
         }
         if (symbol == Symbol.LS) {
-            return new Ls(handler, symbol, lexer, reg);
+            return new Ls(handler,lexer, reg);
         }
         if (symbol == Symbol.GRAMMAR) {
             return new Grammar(handler);

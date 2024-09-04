@@ -6,7 +6,7 @@ import is.shapes.model.GroupObject;
 import is.shapes.register.ObjectRegister;
 
 public class UngroupCmd  implements Command {
-    private ObjectRegister obreg;
+    private final ObjectRegister obreg;
     private final GroupObject go;
 
     public UngroupCmd(ObjectRegister obreg, GroupObject go) {
@@ -18,7 +18,7 @@ public class UngroupCmd  implements Command {
     @Override
     public boolean doIt() {
         obreg.remove(go.getId());
-        System.out.println("Rimozione dell'oggetto Type: "+go.getType()+" con Id:"+go.getId());
+        System.out.println("Smantellamento del gruppo con Id:"+go.getId());
 
         return true;
     }
@@ -26,7 +26,7 @@ public class UngroupCmd  implements Command {
     @Override
     public boolean undoIt() {
         obreg.add(go);
-        System.out.println("Riaggiunta dell'oggetto Type: "+go.getType()+" con Id:"+go.getId());
+        System.out.println("Ricreazione del gruppo con Id:"+go.getId());
 
         return true;
     }

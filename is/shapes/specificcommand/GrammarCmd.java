@@ -4,10 +4,10 @@ import is.command.Command;
 import is.utility.MyConstants;
 
 
-public class PrintCmd implements Command {
+public class GrammarCmd implements Command {
     private final String s;
 
-    public PrintCmd(String s) {
+    public GrammarCmd(String s) {
         this.s=s;
     }
     @Override

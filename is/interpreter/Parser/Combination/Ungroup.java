@@ -14,18 +14,16 @@ import static is.interpreter.Parser.HelperParser.atteso;
 public class Ungroup implements Combination{
     private ObjectRegister reg;
     private LexicalAnalyzer lexer;
-    private Symbol symbol;
     private final HistoryCommandHandler handler;
-    public Ungroup( HistoryCommandHandler handler, Symbol symbol,LexicalAnalyzer lexer, ObjectRegister reg){
+    public Ungroup( HistoryCommandHandler handler, LexicalAnalyzer lexer, ObjectRegister reg){
         this.handler=handler;
-        this.symbol=symbol;
         this.lexer=lexer;
         this.reg=reg;
     }
     @Override
     public void interpret() {
         try {
-            symbol = lexer.nextSymbol();
+            Symbol symbol = lexer.nextSymbol();
             atteso(symbol,Symbol.WORD);
             //controllo con la regex se è un ho l'id di un un gruppo
             String id=lexer.getString();

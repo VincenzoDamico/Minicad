@@ -13,18 +13,16 @@ import is.utility.SyntaxException;
 public class Area implements Combination {
     private ObjectRegister reg;
     private LexicalAnalyzer lexer;
-    private Symbol symbol;
     private final HistoryCommandHandler handler;
-    public Area( HistoryCommandHandler handler, Symbol symbol,LexicalAnalyzer lexer, ObjectRegister reg){
+    public Area( HistoryCommandHandler handler,  LexicalAnalyzer lexer, ObjectRegister reg){
         this.handler=handler;
-        this.symbol=symbol;
         this.lexer=lexer;
         this.reg=reg;
     }
     @Override
     public void interpret() {
         try {
-            symbol = lexer.nextSymbol();
+            Symbol symbol = lexer.nextSymbol();
             if (symbol == Symbol.WORD) {
                 GraphicObject go = reg.getObj(lexer.getString());
                 if (go != null) {

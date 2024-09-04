@@ -4,7 +4,7 @@ public class MyConstants {
     public static final String TITLE="Progetto Ingegneria del software";
     public static final String OPEN="Per conoscere i dettagli della grammatica  scrivi il comando: grammar. Per chiudere il programma scrivi: Exit";
     public static final String GRAMMAR="<cmd>::=<create>|<remove>|<move>|<scale>|<list>|<group>|<ungroup>|<area>|<perimeter>\n" +
-            "<create>::= new <typeconstr> <pos>\n" +
+            "<create>::= new <typeconstr> (<pos>)\n" +
             "<remove>::= del <objID>\n" +
             "<move>::= mv <objID> <pos> | mvoff <objID> <pos> \n" +
             "<scale>::= scale <objID> <posfloat>\n" +
@@ -14,7 +14,7 @@ public class MyConstants {
             "<area>::= area <objID>| area <type> | area all\n" +
             "<perimeter>::= perimeter <objID>| perimeter <type> | perimeter all\n" +
             "<pos>::=( <posfloat> , <posfloat> )\n" +
-            "<typeconstr>::= circle (<posfloat>) | rectangle <pos> | img (<path>)\n" +
+            "<typeconstr>::= circle (<posfloat>) | rectangle (<pos>) | img (<path>)\n" +
             "<type>::= circle | rectangle | img\n" +
             "<listID>::= <objID> { , <objID> }\n" +
             "Il path dell'immagine deve essere assoluto a meno che l'immagine non si trovi nella cartella col il seguende path:\n"+

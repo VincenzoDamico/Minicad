@@ -70,6 +70,8 @@ public class LexicalAnalyzer {
                             symbol = Symbol.LS;
                         else if( input.sval.equals("grammar") )
                             symbol = Symbol.GRAMMAR;
+                        else if( input.sval.equals("\"") )
+                            symbol = Symbol.QUOTED_STRING;
                         else
                             // parola normale - nome o numero
                             symbol = Symbol.WORD;

@@ -1,7 +1,7 @@
 package is.interpreter.Parser.Combination;
 
 import is.command.HistoryCommandHandler;
-import is.shapes.specificcommand.PrintCmd;
+import is.shapes.specificcommand.GrammarCmd;
 import is.utility.MyConstants;
 
 public class Grammar implements Combination{
@@ -11,6 +11,6 @@ public class Grammar implements Combination{
     }
     @Override
     public void interpret() {
-        handler.handle(new PrintCmd(MyConstants.GRAMMAR));
+        handler.handle(new GrammarCmd(MyConstants.GRAMMAR));
     }
 }

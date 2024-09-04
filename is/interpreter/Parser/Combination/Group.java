@@ -16,11 +16,9 @@ import static is.interpreter.Parser.HelperParser.getListID;
 public class Group implements Combination{
     private ObjectRegister reg;
     private LexicalAnalyzer lexer;
-    private Symbol symbol;
     private final HistoryCommandHandler handler;
-    public Group( HistoryCommandHandler handler, Symbol symbol,LexicalAnalyzer lexer, ObjectRegister reg){
+    public Group( HistoryCommandHandler handler,LexicalAnalyzer lexer, ObjectRegister reg){
         this.handler=handler;
-        this.symbol=symbol;
         this.lexer=lexer;
         this.reg=reg;
     }
@@ -29,7 +27,7 @@ public class Group implements Combination{
     @Override
     public void interpret() {
         try {
-            List<String> listId = getListID(symbol, lexer, reg);
+            List<String> listId = getListID( lexer, reg);
             GroupObject go = new GroupObject(reg, listId);
             handler.handle(new GroupCmd(reg, go));
         } catch (

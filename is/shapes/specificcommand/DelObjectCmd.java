@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DelObjectCmd implements Command {
-    private ObjectRegister obreg;
+    private final ObjectRegister obreg;
     private final GraphicObjectPanel panel;
     private final GraphicObject go;
     private List<GraphicObject> grpDel;
@@ -27,30 +27,34 @@ public class DelObjectCmd implements Command {
     @Override
     public boolean doIt() {
         if(go.getType().equals("Group")){
+            System.out.println("Rimozione dell'oggetto Type: "+go.getType()+" con Id:"+go.getId()+" e di tutti i  suoi elementi:");
             GroupObject grp=(GroupObject) go;
-            remGrp(grp);
+            remGrp(grp,"\t");
             grpDel.add(go);
             obreg.remove(go.getId());
         }
         else {
+            System.out.println("Rimozione dell'oggetto Type: "+go.getType()+" con Id:"+go.getId());
             obreg.remove(go.getId());
             panel.remove(go);
         }
-        System.out.println("Rimozione dell'oggetto Type: "+go.getType()+" con Id:"+go.getId());
 
         return true;
     }
 // funziona ricorsivamente mi memorizzo gli elemnti che cancello poichè nell'ogetto gruppo ho solo la lista di id non degli oggetti
-     private void remGrp(GroupObject grp) {
+     private void remGrp(GroupObject grp,String space) {
         for (GraphicObject el: grp.getListGroup()){
             if (el.getType().equals("Group")){
-                remGrp((GroupObject) el);
+                System.out.println(space+"Rimozione dell'oggetto: "+el.getType()+" con Id:"+el.getId()+" e di tutti i  suoi elementi:");
+                remGrp((GroupObject) el,space+"\t");
                 grpDel.add(el);
                 obreg.remove(el.getId());
             }else{
                 grpDel.add(el);
                 obreg.remove(el.getId());
                 panel.remove(el);
+                System.out.println(space+"Rimozione dell'oggetto Type: "+el.getType()+" con Id:"+el.getId());
+
             }
         }
     }
@@ -58,7 +62,9 @@ public class DelObjectCmd implements Command {
     @Override
     public boolean undoIt() {
         if (go.getType().equals("Group")){
+            System.out.println("Ricreazione di tutti gli lementi appartenti al gruppo:");
             reAdded();
+
         }else{
             obreg.add(go);
             panel.add(go);
@@ -75,6 +81,7 @@ public class DelObjectCmd implements Command {
                 obreg.add(el);
                 panel.add(el);
             }
+            System.out.println("Riaggiunta dell'oggetto Type: "+el.getType()+" con Id:"+el.getId());
         }
 
     }

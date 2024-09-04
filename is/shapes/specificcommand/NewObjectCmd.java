@@ -6,7 +6,7 @@ import is.shapes.register.ObjectRegister;
 import is.shapes.view.GraphicObjectPanel;
 
 public class NewObjectCmd implements Command {
-	private ObjectRegister obreg;
+	private final ObjectRegister obreg;
 	private final GraphicObjectPanel panel;
 	private final GraphicObject go;
 

@@ -4,7 +4,6 @@ import is.utility.Dimension2DC;
 import is.utility.MyConstants;
 
 import java.awt.geom.Point2D;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +27,8 @@ public class GroupObject extends AbstractGraphicObject{
     public void moveTo(Point2D p) {
         if(p.getX()<0 ||p.getY()<0)
             throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+        //agiorno la posizione attuale nel caso si cia stao un movimento degli elementi facenti parte del gruppo
+        updatePosition();
         Point2D diff = new Point2D.Double(p.getX()-posAttuale.getX(), p.getY()-posAttuale.getY());
         if(diff.getY()!=0 && diff.getX()!=0 && MovePos(diff)) {
             for (GraphicObject o : getListGroup()) {
@@ -65,6 +66,7 @@ public class GroupObject extends AbstractGraphicObject{
     }
     @Override
     public Point2D getPosition() {
+        updatePosition();
         return posAttuale;
     }
     public void updatePosition() {

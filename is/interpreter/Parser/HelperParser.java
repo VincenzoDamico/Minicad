@@ -17,16 +17,16 @@ public class HelperParser {
             throw new SyntaxException(msg);
         }
     }
-    public static GraphicObject getObj(Symbol symbol, LexicalAnalyzer lexer, ObjectRegister reg) {
-        symbol = lexer.nextSymbol();
+    public static GraphicObject getObj( LexicalAnalyzer lexer, ObjectRegister reg) {
+        Symbol symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.WORD);
         GraphicObject go= reg.getObj(lexer.getString());
         return go;
     }
 
-    public static List<String> getListID(Symbol symbol, LexicalAnalyzer lexer, ObjectRegister reg) {
+    public static List<String> getListID( LexicalAnalyzer lexer, ObjectRegister reg) {
         List<String> ret=new LinkedList<>();
-        symbol = lexer.nextSymbol();
+        Symbol symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.WORD);
         while ( symbol == Symbol.WORD ) {
             String go=lexer.getString();
@@ -43,21 +43,21 @@ public class HelperParser {
         }
         return ret;
     }
-    public static String getPath(Symbol symbol,LexicalAnalyzer lexer) {
-        symbol = lexer.nextSymbol();
+    public static String getPath(LexicalAnalyzer lexer) {
+        Symbol symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.LEFT_PARENTHESIS);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.QUOTED_STRING);
-        String ret=getQuotedString( symbol, lexer);
+        String ret=getQuotedString(lexer);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.QUOTED_STRING);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.RIGHT_PARENTHESIS);
         return ret;
     }
-    public static String getQuotedString(Symbol symbol,LexicalAnalyzer lexer){
+    public static String getQuotedString(LexicalAnalyzer lexer){
         StringBuilder ris=new StringBuilder();
-        symbol = lexer.nextSymbol();
+        Symbol symbol = lexer.nextSymbol();
         while(symbol == Symbol.WORD ) {
             atteso(symbol,Symbol.WORD);
             ris.append(lexer.getString());
@@ -80,27 +80,27 @@ public class HelperParser {
         return ris.toString();
     }
 
-    public  static Point2D getDupla(Symbol symbol,LexicalAnalyzer lexer) {
-        symbol = lexer.nextSymbol();
+    public  static Point2D getDupla(LexicalAnalyzer lexer) {
+        Symbol symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.LEFT_PARENTHESIS);
-        double puntoA =  parseDouble( symbol, lexer);
+        double puntoA =  parseDouble(lexer);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.COMA);
-        double puntoB = parseDouble( symbol, lexer);
+        double puntoB = parseDouble( lexer);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.RIGHT_PARENTHESIS);
         return new Point2D.Double(puntoA, puntoB);
     }
-    public static double getRadius(Symbol symbol, LexicalAnalyzer lexer) {
-        symbol = lexer.nextSymbol();
+    public static double getRadius( LexicalAnalyzer lexer) {
+        Symbol symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.LEFT_PARENTHESIS);
-        double ret = parseDouble(symbol, lexer);
+        double ret = parseDouble( lexer);
         symbol = lexer.nextSymbol();
         atteso(symbol,Symbol.RIGHT_PARENTHESIS);
         return ret;
     }
-    public static  double parseDouble(Symbol symbol,LexicalAnalyzer lexer) {
-        symbol = lexer.nextSymbol();
+    public static  double parseDouble(LexicalAnalyzer lexer) {
+        Symbol symbol = lexer.nextSymbol();
         StringBuilder ris = new StringBuilder();
         if(symbol == Symbol.MINUS){
             ris.append("-");
