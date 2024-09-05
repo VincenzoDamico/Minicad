@@ -8,14 +8,13 @@ import is.utility.MyConstants;
 
 public class LsCmd implements Command {
     private final String ls;
-
-    public LsCmd(String ls) {
-        this.ls=ls;
+    public LsCmd(GraphicObject go) {
+        this.ls=go.toString();
     }
     public LsCmd(String ric , ObjectRegister reg) {
-        this.ls=getString(ric,reg);
+        this.ls=calString(ric,reg);
     }
-    private String getString(String ric,ObjectRegister reg) {
+    private String calString(String ric,ObjectRegister reg) {
         StringBuilder ret=new StringBuilder();
         for(GraphicObject obj: reg){
             if(ric.equals("all")||obj.getId().matches(ric)){
@@ -29,6 +28,11 @@ public class LsCmd implements Command {
         }
         return ret.toString();
     }
+
+    public String getLs() {
+        return ls;
+    }
+
     @Override
     public boolean doIt() {
         if (ls.equals("")){

@@ -28,10 +28,10 @@ public class Scale implements Combination{
             GraphicObject go = getObj(   lexer,  reg);
             double ret = parseDouble(lexer);
             if (ret < 0) {
-                throw new SyntaxException(MyConstants.ERR_NEG_VAL);
+                throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
             }
             handler.handle(new ZoomCommand(go, ret));
-        } catch (SyntaxException s) {
+        } catch (RuntimeException s) {
             throw new SyntaxException(s + " " + MyConstants.ERR_NEG_SCALE);
         }
     }

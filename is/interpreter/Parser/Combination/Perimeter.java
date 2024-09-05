@@ -26,7 +26,7 @@ public class Perimeter implements Combination {
             if (symbol == Symbol.WORD) {
                 GraphicObject go = reg.getObj(lexer.getString());
                 if (go != null) {
-                    handler.handle(new PerimCmd(go.getPerimeter()));
+                    handler.handle(new PerimCmd(go));
                     return;
                 }
             }

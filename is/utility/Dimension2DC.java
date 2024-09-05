@@ -44,5 +44,15 @@ public class Dimension2DC implements Cloneable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dimension2DC that = (Dimension2DC) o;
+
+        if (Double.compare(width, that.width) != 0) return false;
+        return Double.compare(height, that.height) == 0;
+    }
 
 }

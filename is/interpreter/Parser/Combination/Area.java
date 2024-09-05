@@ -26,7 +26,7 @@ public class Area implements Combination {
             if (symbol == Symbol.WORD) {
                 GraphicObject go = reg.getObj(lexer.getString());
                 if (go != null) {
-                    handler.handle(new AreaCmd(go.getArea()));
+                    handler.handle(new AreaCmd(go));
                     return;
                 }
             }

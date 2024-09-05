@@ -26,7 +26,7 @@ public class Ls implements Combination {
             if (symbol == Symbol.WORD) {
                 GraphicObject go = reg.getObj(lexer.getString());
                 if (go != null) {
-                    handler.handle(new LsCmd(go.toString()));
+                    handler.handle(new LsCmd(go));
                     return;
                 }
             }

@@ -7,14 +7,13 @@ import is.utility.MyConstants;
 
 public class AreaCmd implements Command {
     private final double area;
-
-    public AreaCmd(double area) {
-        this.area=area;
+    public AreaCmd(GraphicObject g) {
+        this.area=g.getArea();
     }
     public AreaCmd(String ric , ObjectRegister reg) {
-        this.area=getArea(ric,reg);
+        this.area=calArea(ric,reg);
     }
-    private double getArea(String ric,ObjectRegister reg) {
+    private double calArea(String ric,ObjectRegister reg) {
         double ret=0d;
         for(GraphicObject obj: reg){
             if((ric.equals("all")&&!obj.getType().equals("Group"))||obj.getId().matches(ric)){
@@ -22,6 +21,9 @@ public class AreaCmd implements Command {
             }
         }
         return ret;
+    }
+    public double getArea() {
+        return area;
     }
     @Override
     public boolean doIt() {

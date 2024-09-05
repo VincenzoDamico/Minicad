@@ -36,11 +36,11 @@ public class Moveoff implements Combination {
                 double newY = position.getY() + go.getPosition().getY();
                 position.setLocation(newX, newY);
                 if (position.getX() < 0 || position.getY() < 0) {
-                    throw new SyntaxException(MyConstants.ERR_NEG_VAL);
+                    throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
                 }
                 handler.handle(new MoveCommand(go, position));
             }
-        } catch (SyntaxException s) {
+        } catch (RuntimeException s) {
             throw new SyntaxException(s + " "+MyConstants.ERR_NEG_MVOFF);
         }
     }

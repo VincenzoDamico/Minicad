@@ -33,10 +33,9 @@ public class Parser {
     private final GraphicObjectPanel gpanel;
     private Combination cob;
 
-    public Parser(GraphicObjectPanel gpanel, Reader in, HistoryCommandHandler handler) {
+    public Parser(GraphicObjectPanel gpanel, HistoryCommandHandler handler) {
         this.handler = handler;
         this.gpanel = gpanel;
-        lexer = new LexicalAnalyzer(in);
         reg = new ObjectRegister();
     }
     public ObjectRegister getReg() {

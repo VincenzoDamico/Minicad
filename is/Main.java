@@ -63,8 +63,9 @@ public class Main {
 		f.setVisible(true);
 		System.out.println(MyConstants.OPEN);
 		Scanner sc = new Scanner(System.in);
-		StringReader sr = new StringReader("");
-		Parser p=new Parser(gpanel,sr,handler);
+
+		StringReader sr ;
+		Parser p=new Parser(gpanel,handler);
 		while (true) {
 			String comando = sc.nextLine();
 			if ("exit".equalsIgnoreCase(comando.trim())) {
