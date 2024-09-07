@@ -14,7 +14,7 @@ public final class RectangleObject extends AbstractGraphicObject {
 
 	public RectangleObject(Point2D pos, double w, double h) {
 		if (w <= 0 || h <= 0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_DIM);
 		dim = new Dimension2DC(0,0);
 		dim.setSize(w, h);
 		position = new Point2D.Double(pos.getX(), pos.getY());
@@ -39,7 +39,7 @@ public final class RectangleObject extends AbstractGraphicObject {
 	@Override
 	public void moveTo(Point2D p) {
 		if(p.getX()<0 ||p.getY()<0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_POS);
 		position.setLocation(p);
 		notifyListeners(new GraphicEvent(this));
 	}
@@ -52,7 +52,7 @@ public final class RectangleObject extends AbstractGraphicObject {
 	@Override
 	public void scale(double factor) {
 		if (factor <= 0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_SCAl);
 		dim.setSize(dim.getWidth() * factor, dim.getHeight() * factor);
 
 		notifyListeners(new GraphicEvent(this));

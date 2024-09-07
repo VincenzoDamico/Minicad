@@ -33,7 +33,7 @@ public class Move implements Combination {
             if (go != null) {
                 Point2D position = getDupla(  lexer);
                 if (position.getX() < 0 || position.getY() < 0) {
-                    throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+                    throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_POS);
                 }
                 handler.handle(new MoveCommand(go, position));
             }

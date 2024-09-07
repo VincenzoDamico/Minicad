@@ -40,22 +40,28 @@ public class Creation implements Combination {
                 double radius = getRadius(lexer);
                 Point2D position = getDupla(lexer);
                 //controllo se non è negativo
-                if (position.getX() < 0 || position.getY() < 0 || radius < 0) {
-                    throw new SyntaxException(MyConstants.ERR_NEG_VAL);
+                if (position.getX() < 0 || position.getY() < 0 ) {
+                    throw new SyntaxException(MyConstants.ERR_NEG_VAL_POS);
+                }
+                if (radius <= 0){
+                    throw new SyntaxException(MyConstants.ERR_NEG_VAL_RAD);
                 }
                 go = new CircleObject(position, radius);
             } else if (symbol == Symbol.RECTANGLE) {
                 Point2D dimension = getDupla(lexer);
                 Point2D position = getDupla(lexer);
-                if (position.getX() < 0 || position.getY() < 0 || dimension.getX() < 0 || dimension.getY() < 0) {
-                    throw new SyntaxException(MyConstants.ERR_NEG_VAL);
+                if (position.getX() < 0 || position.getY() < 0 ) {
+                    throw new SyntaxException(MyConstants.ERR_NEG_VAL_POS);
                 }
+                if(dimension.getX() <= 0 || dimension.getY() <= 0)
+                    throw new SyntaxException(MyConstants.ERR_NEG_DIM);
+
                 go = new RectangleObject(position, dimension.getX(), dimension.getY());
             } else if (symbol == Symbol.IMG) {
                 String path = getPath(lexer);
                 Point2D position = getDupla(lexer);
                 if (position.getX() < 0 || position.getY() < 0) {
-                    throw new SyntaxException(MyConstants.ERR_NEG_VAL);
+                    throw new SyntaxException(MyConstants.ERR_NEG_VAL_POS);
                 }
 
                 // vedo se un path totale o parziale

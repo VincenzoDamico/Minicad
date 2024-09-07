@@ -15,7 +15,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 
 	public CircleObject(Point2D pos, double r) {
 		if (r <= 0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_RAD);
 		position = new Point2D.Double(pos.getX(), pos.getY());
 		radius = r;
 		id="c"+COUNTOB;
@@ -30,7 +30,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 	@Override
 	public void moveTo(Point2D p) {
 		if(p.getX()<0 ||p.getY()<0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_POS);
 		position.setLocation(p);
 		notifyListeners(new GraphicEvent(this));
 	}
@@ -44,7 +44,7 @@ public final  class CircleObject extends AbstractGraphicObject {
 	@Override
 	public void scale(double factor) {
 		if (factor <= 0)
-			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+			throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_SCAl);
 		radius *= factor;
 		notifyListeners(new GraphicEvent(this));
 	}

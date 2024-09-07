@@ -26,7 +26,7 @@ public class GroupObject extends AbstractGraphicObject{
     @Override
     public void moveTo(Point2D p) {
         if(p.getX()<0 ||p.getY()<0)
-            throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+            throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_POS);
         //agiorno la posizione attuale nel caso si cia stao un movimento degli elementi facenti parte del gruppo
         updatePosition();
         Point2D diff = new Point2D.Double(p.getX()-posAttuale.getX(), p.getY()-posAttuale.getY());
@@ -91,7 +91,7 @@ public class GroupObject extends AbstractGraphicObject{
     @Override
     public void scale(double factor) {
         if (factor <= 0)
-            throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL);
+            throw new IllegalArgumentException(MyConstants.ERR_NEG_VAL_SCAl);
         for(GraphicObject o :  getListGroup() ){
             o.scale(factor);
         }
