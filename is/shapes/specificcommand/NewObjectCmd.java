@@ -2,7 +2,7 @@ package is.shapes.specificcommand;
 
 import is.command.Command;
 import is.shapes.model.GraphicObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.shapes.view.GraphicObjectPanel;
 
 public class NewObjectCmd implements Command {

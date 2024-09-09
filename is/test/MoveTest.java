@@ -8,7 +8,7 @@ import is.interpreter.Parser.Parser;
 import is.shapes.model.CircleObject;
 import is.shapes.model.ImageObject;
 import is.shapes.model.RectangleObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.shapes.view.*;
 import is.utility.SyntaxException;
 import org.junit.jupiter.api.BeforeAll;

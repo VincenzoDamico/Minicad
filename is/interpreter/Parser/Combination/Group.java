@@ -2,9 +2,8 @@ package is.interpreter.Parser.Combination;
 
 import is.command.HistoryCommandHandler;
 import is.interpreter.LexicalAnalyzer;
-import is.interpreter.Symbol;
 import is.shapes.model.GroupObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.shapes.specificcommand.GroupCmd;
 import is.utility.MyConstants;
 import is.utility.SyntaxException;

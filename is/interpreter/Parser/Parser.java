@@ -4,22 +4,12 @@ import is.command.HistoryCommandHandler;
 import is.interpreter.LexicalAnalyzer;
 import is.interpreter.Parser.Combination.*;
 import is.interpreter.Symbol;
-import is.shapes.model.*;
-import is.shapes.register.ObjectRegister;
-import is.shapes.specificcommand.*;
+import is.shapes.controller.ObjectRegister;
 import is.utility.MyConstants;
 import is.utility.SyntaxException;
 import is.shapes.view.*;
 
-import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.geom.Point2D;
 import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
 
 import static is.interpreter.Parser.HelperParser.atteso;
 

@@ -3,7 +3,7 @@ package is.interpreter.Parser;
 import is.interpreter.LexicalAnalyzer;
 import is.interpreter.Symbol;
 import is.shapes.model.GraphicObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.utility.SyntaxException;
 
 import java.awt.geom.Point2D;

@@ -1,18 +1,16 @@
 package is.interpreter.Parser.Combination;
 
 import is.command.HistoryCommandHandler;
-import is.interpreter.Parser.Combination.Combination;
 import is.interpreter.LexicalAnalyzer;
 import is.interpreter.Symbol;
 import is.shapes.model.*;
-import is.shapes.register.ObjectRegister;
-import is.shapes.view.CreateObjectAction;
+import is.shapes.controller.ObjectRegister;
+import is.shapes.specificcommand.NewObjectCmd;
 import is.shapes.view.GraphicObjectPanel;
 import is.utility.MyConstants;
 import is.utility.SyntaxException;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.geom.Point2D;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -78,10 +76,8 @@ public class Creation implements Combination {
             } else {
                 throw new SyntaxException("");
             }
+            handler.handle(new NewObjectCmd(gpanel, go,reg));
 
-            CreateObjectAction action = new CreateObjectAction(go, gpanel, handler, reg);
-            ActionEvent event = new ActionEvent(action, ActionEvent.ACTION_PERFORMED, "command");
-            action.actionPerformed(event);
         }catch (SyntaxException s){
             throw new SyntaxException(s+" "+MyConstants.ERR_NEG_NEW);
 

@@ -1,4 +1,4 @@
-package is.shapes.register;
+package is.shapes.controller;
 
 import is.shapes.model.GraphicObject;
 import is.utility.SyntaxException;

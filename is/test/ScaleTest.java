@@ -7,14 +7,13 @@ import is.interpreter.Parser.Parser;
 import is.shapes.model.CircleObject;
 import is.shapes.model.ImageObject;
 import is.shapes.model.RectangleObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.shapes.view.*;
 import is.utility.Dimension2DC;
 import is.utility.SyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.awt.geom.Point2D;
 import java.io.StringReader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

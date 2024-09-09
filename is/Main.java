@@ -46,7 +46,6 @@ public class Main {
 		gpanel.setPreferredSize(new Dimension(400, 400));
 		final GraphicObjectController goc = new GraphicObjectController(handler);
 		gpanel.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				goc.setControlledObject(gpanel.getGraphicObjectAt(e.getPoint()));
@@ -62,26 +61,32 @@ public class Main {
 		f.pack();
 		f.setVisible(true);
 		System.out.println(MyConstants.OPEN);
-		Scanner sc = new Scanner(System.in);
-
-		StringReader sr ;
-		Parser p=new Parser(gpanel,handler);
-		while (true) {
-			String comando = sc.nextLine();
-			if ("exit".equalsIgnoreCase(comando.trim())) {
-				System.exit(1);
-			}
-			try {
-				if (!comando.trim().isEmpty()) {
-					sr = new StringReader(comando);
-					p.setReader(sr);
+		Scanner sc = null;
+		try {
+			sc = new Scanner(System.in);
+			StringReader sr;
+			Parser p = new Parser(gpanel, handler);
+			while (true) {
+				String comando = sc.nextLine();
+				if ("exit".equalsIgnoreCase(comando.trim())) {
+					sc.close();
+					System.exit(1);
 				}
-			} catch (RuntimeException ex){
-				String s = ex.toString().replace("is.utility.SyntaxException: ", "").replace("java.lang.IllegalArgumentException: ", "");
-				System.err.println("\n"+s);
+				try {
+					if (!comando.trim().isEmpty()) {
+						sr = new StringReader(comando);
+						p.setReader(sr);
+					}
+				} catch (RuntimeException ex) {
+					String s = ex.toString().replace("is.utility.SyntaxException: ", "").replace("java.lang.IllegalArgumentException: ", "");
+					System.err.println("\n" + s);
+				}
 			}
-        }
+		}catch (RuntimeException e){
 
+		}finally {
+			sc.close();
+		}
 
 	}
 }

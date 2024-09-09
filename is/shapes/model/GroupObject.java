@@ -1,5 +1,5 @@
 package is.shapes.model;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 import is.utility.Dimension2DC;
 import is.utility.MyConstants;
 

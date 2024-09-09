@@ -2,9 +2,8 @@ package is.shapes.specificcommand;
 
 
 import is.command.Command;
-import is.shapes.model.GraphicObject;
 import is.shapes.model.GroupObject;
-import is.shapes.register.ObjectRegister;
+import is.shapes.controller.ObjectRegister;
 
 public class GroupCmd  implements Command {
     private final ObjectRegister obreg;
